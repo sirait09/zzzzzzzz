@@ -22,6 +22,11 @@
 			`;
 			msg.style.display = 'flex';
 			msg.style.display = 'flex';
+			}
+			.button-group {
+				position: relative;
+				width: 300px;
+				height: 100px;
 			height: 100px;
 		}
 		button {
@@ -60,10 +65,10 @@
 	</style>
 </head>
 <body>
-	<h1>Move On Yuk!</h1>
+	<h1>BISA MOVE ON GAK DEL??</h1>
 	<div class="button-group">
-		<button id="yuk">Yuk!</button>
-		<button id="gak">Gak Bisa!</button>
+		<button id="yuk">BISA!</button>
+		<button id="gak">GAK BISA!</button>
 	</div>
 	<div id="gamon-message" style="display:none; flex-direction:column; align-items:center; justify-content:center;"></div>
 	<script>
@@ -79,15 +84,30 @@
 		});
 		document.getElementById('gak').addEventListener('click', () => {
 			const msg = document.getElementById('gamon-message');
-			msg.innerHTML = `
-			  <span>yahh GAMON 😂</span>
-			  <div style="margin-top:24px;">
-			    <iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=75&end=105&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay" allowfullscreen></iframe>
-			    <div style='font-size:12px;color:#888;margin-top:8px;'>Reff: Mahalini - Sisa Rasa</div>
-			  </div>
-			`;
-			msg.style.display = 'flex';
-			// Note: Volume control for YouTube embed tidak bisa diatur langsung dari JS karena keterbatasan CORS dan API. User harus menaikkan volume manual jika browser membatasi.
+			// Deteksi mobile
+			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			// Bagian reff Sisa Rasa Mahalini (kurang lebih mulai detik 90 sampai 120)
+			const reffStart = 90; // detik
+			const reffEnd = 120; // detik
+			if (isMobile) {
+				msg.innerHTML = `
+					<span>yahh GAMON 😂</span>
+					<button id="playReff" style="margin-top:24px;font-size:1.1rem;">Putar Lagu</button>
+					<iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=0&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
+				`;
+				msg.style.display = 'flex';
+				document.getElementById('playReff').onclick = function() {
+					const frame = document.getElementById('mahalini-audio');
+					frame.src = `https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4`;
+					this.style.display = 'none';
+				};
+			} else {
+				msg.innerHTML = `
+					<span>yahh GAMON 😂</span>
+					<iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
+				`;
+				msg.style.display = 'flex';
+			}
 		});
 	</script>
 </body>
