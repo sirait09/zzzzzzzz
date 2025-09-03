@@ -64,7 +64,7 @@
 		<button id="yuk">Yuk!</button>
 		<button id="gak">Gak Bisa!</button>
 	</div>
-	<div id="gamon-message" style="display:none;"></div>
+	<div id="gamon-message" style="display:none; flex-direction:column; align-items:center; justify-content:center;"></div>
 	<script>
 		const yukBtn = document.getElementById('yuk');
 		const group = document.querySelector('.button-group');
@@ -78,8 +78,15 @@
 		});
 		document.getElementById('gak').addEventListener('click', () => {
 			const msg = document.getElementById('gamon-message');
-			msg.innerHTML = '<span>yahh GAMON 😂</span>';
+			msg.innerHTML = `
+			  <span>yahh GAMON 😂</span>
+			  <div style="margin-top:24px;">
+			    <iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=75&end=105&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+			    <div style='font-size:12px;color:#888;margin-top:8px;'>Reff: Mahalini - Sisa Rasa</div>
+			  </div>
+			`;
 			msg.style.display = 'flex';
+			// Note: Volume control for YouTube embed tidak bisa diatur langsung dari JS karena keterbatasan CORS dan API. User harus menaikkan volume manual jika browser membatasi.
 		});
 	</script>
 </body>
