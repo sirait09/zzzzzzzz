@@ -31,18 +31,27 @@
 		}
 		button {
 			position: absolute;
-			padding: 12px 32px;
-			font-size: 18px;
-			border: none;
-			border-radius: 8px;
-			cursor: pointer;
-			transition: background 0.2s;
-		}
-		#yuk {
-			background: #2d6cdf;
-			color: #fff;
-		}
-		#gak {
+			.button-group {
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				gap: 16px;
+				width: 100vw;
+				max-width: 350px;
+				margin: 0 auto 24px auto;
+			}
+			button {
+				position: static;
+				padding: 12px 20px;
+				font-size: 1.1rem;
+				border: none;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: background 0.2s;
+				min-width: 90px;
+				max-width: 100%;
+				word-break: break-word;
 			background: #f44336;
 			color: #fff;
 			right: 0;
@@ -87,27 +96,14 @@
 			// Deteksi mobile
 			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 			// Bagian reff Sisa Rasa Mahalini (kurang lebih mulai detik 90 sampai 120)
-			const reffStart = 90; // detik
-			const reffEnd = 120; // detik
-			if (isMobile) {
-				msg.innerHTML = `
-					<span>yahh GAMON 😂</span>
-					<button id="playReff" style="margin-top:24px;font-size:1.1rem;">Putar Lagu</button>
-					<iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=0&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
-				`;
-				msg.style.display = 'flex';
-				document.getElementById('playReff').onclick = function() {
-					const frame = document.getElementById('mahalini-audio');
-					frame.src = `https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4`;
-					this.style.display = 'none';
-				};
-			} else {
-				msg.innerHTML = `
-					<span>yahh GAMON 😂</span>
-					<iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
-				`;
-				msg.style.display = 'flex';
-			}
+			   const reffStart = 105; // detik (reff lebih pas)
+			   const reffEnd = 135; // detik
+			msg.innerHTML = `
+				<span>yahh GAMON 😂</span>
+				<iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
+			`;
+			msg.style.display = 'flex';
+			// Catatan: Volume YouTube embed tidak bisa diatur otomatis dari JS karena keterbatasan browser. User harus menaikkan volume manual jika browser membatasi.
 		});
 	</script>
 </body>
