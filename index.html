@@ -6,23 +6,27 @@
 	<title>Move On Yuk!</title>
 	<link rel="stylesheet" href="style.css">
 	<style>
-		body {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: center;
-			height: 100vh;
-			background: #f0f4f8;
-		}
-		h1 {
-			msg.style.display = 'flex';
-			msg.innerHTML = `
-			  <span>yahh GAMON 😂</span>
-			  <iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=75&end=105&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
-			`;
-			msg.style.display = 'flex';
-			msg.style.display = 'flex';
-			}
+		   body {
+			   min-height: 100vh;
+			   margin: 0;
+			   padding: 0;
+			   background: #f0f4f8;
+			   display: flex;
+			   flex-direction: column;
+			   align-items: center;
+			   justify-content: center;
+		   }
+		   h1 {
+			   font-size: 1.3rem;
+			   color: #2d6cdf;
+			   margin-bottom: 32px;
+			   margin-top: 0;
+			   text-align: center;
+			   white-space: nowrap;
+			   overflow: hidden;
+			   text-overflow: ellipsis;
+			   max-width: 95vw;
+		   }
 			.button-group {
 				position: relative;
 				width: 300px;
@@ -31,16 +35,30 @@
 		}
 		button {
 			position: absolute;
-			.button-group {
-				display: flex;
-				flex-direction: row;
-				justify-content: center;
-				align-items: center;
-				gap: 16px;
-				width: 100vw;
-				max-width: 350px;
-				margin: 0 auto 24px auto;
-			}
+			   .button-group {
+				   display: flex;
+				   flex-direction: row;
+				   justify-content: center;
+				   align-items: center;
+				   gap: 16px;
+				   width: 100%;
+				   max-width: 350px;
+				   margin: 0 auto 24px auto;
+			   }
+	   @media (max-width: 480px) {
+		   h1 {
+			   font-size: 1rem;
+			   max-width: 98vw;
+			   white-space: nowrap;
+		   }
+		   .button-group {
+			   gap: 8px;
+		   }
+		   button {
+			   font-size: 0.95rem;
+			   padding: 10px 10px;
+		   }
+	   }
 			button {
 				position: static;
 				padding: 12px 20px;
