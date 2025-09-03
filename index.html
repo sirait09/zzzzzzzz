@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Move On Yuk!</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background: #f0f4f8;
+		}
+		h1 {
+			color: #2d6cdf;
+			margin-bottom: 40px;
+		}
+		.button-group {
+			position: relative;
+			width: 300px;
+			height: 100px;
+		}
+		button {
+			position: absolute;
+			padding: 12px 32px;
+			font-size: 18px;
+			border: none;
+			border-radius: 8px;
+			cursor: pointer;
+			transition: background 0.2s;
+		}
+		#yuk {
+			background: #2d6cdf;
+			color: #fff;
+		}
+		#gak {
+			background: #f44336;
+			color: #fff;
+			right: 0;
+		}
+		#gamon-message {
+			position: fixed;
+			top: 0; left: 0; right: 0; bottom: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(255,255,255,0.9);
+			z-index: 100;
+		}
+		#gamon-message span {
+			font-size: 3rem;
+			color: #f44336;
+			font-weight: bold;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<h1>Move On Yuk!</h1>
+	<div class="button-group">
+		<button id="yuk">Yuk!</button>
+		<button id="gak">Gak Bisa!</button>
+	</div>
+	<div id="gamon-message" style="display:none;"></div>
+	<script>
+		const yukBtn = document.getElementById('yuk');
+		const group = document.querySelector('.button-group');
+		yukBtn.addEventListener('click', () => {
+			const maxX = group.clientWidth - yukBtn.offsetWidth;
+			const maxY = group.clientHeight - yukBtn.offsetHeight;
+			const randX = Math.random() * maxX;
+			const randY = Math.random() * maxY;
+			yukBtn.style.left = randX + 'px';
+			yukBtn.style.top = randY + 'px';
+		});
+		document.getElementById('gak').addEventListener('click', () => {
+			const msg = document.getElementById('gamon-message');
+			msg.innerHTML = '<span>yahh GAMON 😂</span>';
+			msg.style.display = 'flex';
+		});
+	</script>
+</body>
+</html>
