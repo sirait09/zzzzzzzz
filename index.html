@@ -7,35 +7,54 @@
 	<link rel="stylesheet" href="style.css">
 	<style>
 		   body {
-			   min-height: 100vh;
-			   margin: 0;
-			   padding: 0;
-			   background: #f0f4f8;
 			   display: flex;
 			   flex-direction: column;
 			   align-items: center;
 			   justify-content: center;
+			   height: 100vh;
+			   background: #f0f4f8;
 		   }
 		   h1 {
-			   font-size: 1.3rem;
-			   margin-bottom: 32px;
-			   margin-top: 0;
-			   text-align: center;
-			   white-space: nowrap;
-			   overflow: hidden;
-			   text-overflow: ellipsis;
-			   max-width: 95vw;
-			   background: linear-gradient(90deg, #2d6cdf, #f44336, #ff9800, #2ecc71);
-			   color: transparent;
-			   background-clip: text;
-			   -webkit-background-clip: text;
-			   font-weight: bold;
-			   letter-spacing: 1px;
-			   animation: rainbow 2s linear infinite;
+			   color: #2d6cdf;
+			   margin-bottom: 40px;
 		   }
-		   @keyframes rainbow {
-			   0% { filter: hue-rotate(0deg); }
-			   100% { filter: hue-rotate(360deg); }
+		   .button-group {
+			   position: relative;
+			   width: 300px;
+			   height: 100px;
+		   }
+		   button {
+			   position: absolute;
+			   padding: 12px 32px;
+			   font-size: 18px;
+			   border: none;
+			   border-radius: 8px;
+			   cursor: pointer;
+			   transition: background 0.2s;
+		   }
+		   #yuk {
+			   background: #2d6cdf;
+			   color: #fff;
+		   }
+		   #gak {
+			   background: #f44336;
+			   color: #fff;
+			   right: 0;
+		   }
+		   #gamon-message {
+			   position: fixed;
+			   top: 0; left: 0; right: 0; bottom: 0;
+			   display: flex;
+			   align-items: center;
+			   justify-content: center;
+			   background: rgba(255,255,255,0.9);
+			   z-index: 100;
+		   }
+		   #gamon-message span {
+			   font-size: 3rem;
+			   color: #f44336;
+			   font-weight: bold;
+			   text-align: center;
 		   }
 			.button-group {
 				position: relative;
@@ -102,7 +121,7 @@
 	</style>
 </head>
 <body>
-		<h1><span style="font-size:1.1em;">😏</span> Berani Jawab Jujur: <span style="color:#f44336;">BISA</span> atau <span style="color:#2d6cdf;">GAK BISA</span> Move On? <span style="font-size:1.1em;">🤔</span></h1>
+			<h1>BISA MOVE ON GAK DEL??</h1>
 	<div class="button-group">
 		<button id="yuk">BISA!</button>
 		<button id="gak">GAK BISA!</button>
@@ -112,26 +131,23 @@
 		   const yukBtn = document.getElementById('yuk');
 		   const group = document.querySelector('.button-group');
 		   yukBtn.addEventListener('click', () => {
-			   yukBtn.disabled = true;
-			   yukBtn.style.background = '#aaa';
-			   yukBtn.innerText = 'Keren!';
-			   setTimeout(() => {
-				   yukBtn.disabled = false;
-				   yukBtn.style.background = '#2d6cdf';
-				   yukBtn.innerText = 'BISA!';
-			   }, 2000);
+			   const maxX = group.clientWidth - yukBtn.offsetWidth;
+			   const maxY = group.clientHeight - yukBtn.offsetHeight;
+			   const randX = Math.random() * maxX;
+			   const randY = Math.random() * maxY;
+			   yukBtn.style.left = randX + 'px';
+			   yukBtn.style.top = randY + 'px';
 		   });
 		document.getElementById('gak').addEventListener('click', () => {
 			const msg = document.getElementById('gamon-message');
 			// Deteksi mobile
 			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 			// Bagian reff Sisa Rasa Mahalini (kurang lebih mulai detik 90 sampai 120)
-			   const reffStart = 105; // detik (reff lebih pas)
-			   const reffEnd = 135; // detik
+			   const reffStart = 83; // detik (1:23)
+			   const reffEnd = 113; // detik (reff sekitar 30 detik)
 			   msg.innerHTML = `
-				   <span style="font-size:2.2rem;color:#f44336;font-weight:bold;">yahh GAMON 😂</span>
+				   <span>yahh GAMON 😂</span>
 				   <iframe id="mahalini-audio" width="0" height="0" src="https://www.youtube.com/embed/Wh66ThpxvI4?autoplay=1&start=${reffStart}&end=${reffEnd}&controls=0&loop=1&playlist=Wh66ThpxvI4" frameborder="0" allow="autoplay"></iframe>
-				   <div style="font-size:13px;color:#888;margin-top:8px;">* Volume HP/PC tidak bisa diatur otomatis karena aturan browser. Naikkan volume manual jika perlu.</div>
 			   `;
 			   msg.style.display = 'flex';
 		});
